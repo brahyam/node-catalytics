@@ -1,0 +1,11 @@
+.logo {
+  max-width: 300px;
+  padding: 10px;
+  display: inline;
+}
+
+.form-actions {
+  margin: 0;
+  background-color: transparent;
+  text-align: center;
+}
