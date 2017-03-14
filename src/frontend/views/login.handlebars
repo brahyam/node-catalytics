@@ -1,45 +1,45 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <form>
+            <form method="post" action="/auth/local">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="loginEmail" placeholder="Email">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
                 <div class="form-actions">
-                    <a class="btn btn-default" id="loginSubmit">Submit</a>
+                    <button type="submit" class="btn btn-default" id="loginSubmit">Submit</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-    $(function () {
-        var host = 'http://localhost:3030';
-
-        // Set up Feathers client side
-        var app = feathers()
-                .configure(feathers.rest(host).jquery(jQuery))
-                .configure(feathers.hooks())
-                .configure(feathers.authentication({storage: window.localStorage}));
-
-        // Authenticate. Normally you'd grab these from a login form rather than hard coding them
-        $('#loginSubmit').click(function () {
-            var email = $('#loginEmail').val();
-            var password = $('#loginPassword').val();
-            app.authenticate({
-                type: 'local',
-                'email': email,
-                'password': password
-            }).then(function (result) {
-                console.log('Authenticated!', app.get('token'));
-            }).catch(function (error) {
-                console.error('Error authenticating!', error);
-            });
-        });
-    });
+    //    $(function () {
+    //        var host = 'http://localhost:3030';
+    //
+    //        // Set up Feathers client side
+    //        var app = feathers()
+    //                .configure(feathers.rest(host).jquery(jQuery))
+    //                .configure(feathers.hooks())
+    //                .configure(feathers.authentication({storage: window.localStorage}));
+    //
+    //        // Authenticate. Normally you'd grab these from a login form rather than hard coding them
+    //        $('#loginSubmit').click(function () {
+    //            var email = $('#loginEmail').val();
+    //            var password = $('#loginPassword').val();
+    //            app.authenticate({
+    //                type: 'local',
+    //                'email': email,
+    //                'password': password
+    //            }).then(function (result) {
+    //                console.log('Authenticated!', app.get('token'));
+    //            }).catch(function (error) {
+    //                console.error('Error authenticating!', error);
+    //            });
+    //        });
+    //    });
 </script>
