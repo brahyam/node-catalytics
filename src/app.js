@@ -24,10 +24,9 @@ const socketio = require('feathers-socketio');
 const middleware = require('./middleware');
 const services = require('./services');
 const expressHandlebars = require('express-handlebars');
-const frontend = require('./frontend/routes');
 const handlebars = expressHandlebars.create({
-  layoutsDir: __dirname + '/frontend/views/layouts',
-  partialsDir: __dirname + '/frontend/views/partials',
+  layoutsDir: __dirname + '/middleware/frontend/views/layouts',
+  partialsDir: __dirname + '/middleware/frontend/views/partials',
   defaultLayout: 'main.handlebars'
 });
 
@@ -43,9 +42,8 @@ app.use(compress())
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({extended: true}))
   .engine('handlebars', handlebars.engine)
-  .set('views', __dirname + '/frontend/views')
+  .set('views', __dirname + '/middleware/frontend/views')
   .set('view engine', 'handlebars')
-  .use('/', frontend(app)) // Manage frontend pages.
   .configure(hooks())
   .configure(rest())
   .configure(socketio())
