@@ -9,3 +9,11 @@
   background-color: transparent;
   text-align: center;
 }
+
+.cursor-default {
+  cursor: default;
+}
+
+.text-black {
+  color: black;
+}

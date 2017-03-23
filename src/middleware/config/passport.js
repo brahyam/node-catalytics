@@ -25,11 +25,9 @@ module.exports = function (passport, app) {
         if (!user) {
           err = 'user not found';
         }
-        console.log('user found:' + user);
         done(err, user);
       })
       .catch(err => {
-        console.error('error searching user');
         done(err);
       });
   });

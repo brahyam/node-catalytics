@@ -1,10 +1,16 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
+const settingsRoutes = require('./settings');
+const authRoutes = require('./auth');
 
 
 module.exports = function (app) {
 
+  // Catch all auth routes first (login/signup/logoout)
+  router.use('/', authRoutes(app));
+
+  // Index - redirect to dashboard
   router.get('/', function (req, res, next) {
     res.redirect('/ui/dashboard');
   });
@@ -16,30 +22,8 @@ module.exports = function (app) {
     res.render('dashboard', data);
   });
 
-  router.get('/login', function (req, res, next) {
-    res.render('login', {message: req.flash('loginMessage')});
-  });
-
-  router.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/ui/dashboard', // redirect to the secure profile section
-    failureRedirect: '/login', // redirect back to the signup page if there is an error
-    failureFlash: true // allow flash messages
-  }));
-
-  router.get('/signup', function (req, res, next) {
-    res.render('signUp', {message: req.flash('signupMessage')});
-  });
-
-  router.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/ui/dashboard', // redirect to the dashboard
-    failureRedirect: '/signup', // redirect back to the signup page if there is an error
-    failureFlash: true // allow flash messages
-  }));
-
-  router.get('/logout', function (req, res, next) {
-    res.logout();
-    res.render('signUp');
-  });
+  // Handle all settings
+  router.use('/ui/settings', isLoggedIn, settingsRoutes(app));
 
   router.get('/ui/orders', function (req,res,next){
     res.render('orders');
@@ -65,7 +49,7 @@ module.exports = function (app) {
   function isLoggedIn(req, res, next) {
 
     // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
+    if (req.isAuthenticated() && req.user.approved == true)
       return next();
 
     // if they aren't redirect them to the login page
