@@ -11,6 +11,22 @@ module.exports = function (app) {
     res.render('dashboard');
   });
 
+  router.get('/ui/orders', function (req,res,next){
+    res.render('orders');
+  });
+
+  router.get('/ui/products', function (req,res,next){
+    res.render('products');
+  });
+
+  router.get('/ui/customers', function (req,res,next){
+    res.render('customers');
+  });
+
+  router.get('/settings', function (req,res,next){
+    res.render('settings');
+  });
+
   router.get('/login', function (req, res, next) {
     res.render('login');
   });
