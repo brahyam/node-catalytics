@@ -29,6 +29,14 @@ module.exports = function (app) {
     res.render('orders');
   });
 
+  router.get('/ui/newprod', function (req, res, next) {
+    res.render('newprod');
+  });
+
+  router.get('/ui/editprod', function (req, res, next) {
+    res.render('editprod');
+  });
+
   router.get('/ui/products', function (req,res,next){
     app.service('products').find({paginate: false})
     .then(results => {
