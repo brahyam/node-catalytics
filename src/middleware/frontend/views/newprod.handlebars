@@ -1,29 +1,10 @@
-<div class="text-center"><h1>Create Product</h1></div>
-<style>
-  .padding-top {
-    padding-top: 20px
-  }
-
-</style>
-
-<
-<div class="container, text-center">
-    <form>
-      Product Name:<br>
-      <input type="text" required name="name"><br>
-      Description:<br>
-      <textarea name="Description" rows="10" cols="30"></textarea>
-      <br>
-      Quantity: <br>
-      <input type="number" name="quantity" min="1" max="100">
-      <br>
-      Price: <br>
-      <input type="number" name="quantity" min="1" max="1000">
-      <br>
-      <div class="padding-top">
-        <input type="submit" value="Submit">
-      </div>
-    </form>
+<div class="container">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="text-center">
+      <h1>Create Product</h1>
+      <form method="post" action="/ui/products/create">
+        {{>productForm}}
+      </form>
+    </div>
   </div>
-
-
+</div>

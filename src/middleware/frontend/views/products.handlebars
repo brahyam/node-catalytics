@@ -1,49 +1,17 @@
 <h1> Products</h1>
 
-<style>
-  th {
-    background-color: #4CAF50;
-    color: white;
-  }
-
-  tr:nth-child(even) {
-    background-color: lightgray
-  }
-
-  tr:hover {
-    background-color: #4CAF50
-  }
-
-  table {
-    width: 100%;
-  }
-
-  th {
-    height: 50px;
-  }
-
-  th, td {
-    padding: 15px;
-    text-align: left;
-  }
-
-  .btn-pad {
-    padding-bottom: 20px
-  }
-</style>
 <div class="btn-pad">
-  <input type="button" value="Create Product" onClick=" window.location.href='/ui/newprod' ">
-  <input type="button" value="Edit Product" onClick=" window.location.href='/ui/editprod' ">
+  <a class="btn btn-primary" href="/ui/products/create"> Create Product</a>
+
 </div>
 
-<table>
+<table class="table">
   <tr>
     <th>Name</th>
     <th>Description</th>
     <th>Quantity</th>
     <th>Price</th>
   </tr>
-  <tr>
   {{#each products}}
     <tr>
       <td>
@@ -60,5 +28,4 @@
       </td>
     </tr>
   {{/each}}
-  </tr>
 </table>

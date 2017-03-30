@@ -29,20 +29,25 @@ module.exports = function (app) {
     res.render('orders');
   });
 
-  router.get('/ui/newprod', function (req, res, next) {
+  router.get('/ui/products/create', function (req, res, next) {
     res.render('newprod');
   });
 
-  router.get('/ui/editprod', function (req, res, next) {
+  router.post('ui/products/create', function (req, res, next) {
+    res.send('OK')
+    res.render('create', {products: results});
+  });
+
+  router.get('/ui/products/edit', function (req, res, next) {
     res.render('editprod');
   });
 
   router.get('/ui/products', function (req,res,next){
     app.service('products').find({paginate: false})
-    .then(results => {
-      console.log('Products :', results);
-      res.render('products');
-    });
+      .then(results => {
+        console.log('Products :', results);
+        res.render('products', {products: results});
+      });
   });
 
   router.get('/ui/customers', function (req,res,next){

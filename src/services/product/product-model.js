@@ -11,7 +11,7 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema({
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now },
-  name: {type: String},
+  name: {type: String, required: true, unique: true},
   description:{type: String},
   price:{type: Number},
   quantity:{type: Number}

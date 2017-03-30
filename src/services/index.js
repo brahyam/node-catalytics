@@ -13,5 +13,4 @@ module.exports = function () {
   app.configure(authentication);
   app.configure(user);
   app.configure(product);
-  app.configure(product);
 };
