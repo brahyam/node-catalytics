@@ -34,8 +34,28 @@ module.exports = function (app) {
   });
 
   router.post('ui/products/create', function (req, res, next) {
-    res.send('OK')
-    res.render('create', {products: results});
+    var name = req.body.name;
+    var desc = req.body.description;
+    var price = req.body.price;
+    var quant = req.body.quantity;
+
+    app.service('products').create({
+      name: name,
+      description: desc,
+      price: price,
+      quantity: quant
+
+        .then(product => {
+
+          if (product) {
+            res.redirect('/ui/products');
+          } else {
+            res.send('failed');
+          }
+        })
+
+    });
+
   });
 
   router.get('/ui/products/edit', function (req, res, next) {
